@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/Mutation/CollideCam/Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://addons/Mutation/CollideCam/Scripts/rotation_helper.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+
+radius = 0.441376
+height = 0.002
+
+[node name="Player" type="KinematicBody"]
+
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+axis_lock_linear_x = false
+axis_lock_linear_y = false
+axis_lock_linear_z = false
+axis_lock_angular_x = false
+axis_lock_angular_y = false
+axis_lock_angular_z = false
+collision/safe_margin = 0.001
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "collision" ]
+
+[node name="shape" type="CollisionShape" parent="." index="0"]
+
+transform = Transform( 1.0194, 0, 0, 0, 2.27871, 0, 0, 0, 1.0194, 0.0683472, 0.703664, 0 )
+shape = SubResource( 1 )
+disabled = false
+
+[node name="aim_point" type="Spatial" parent="." index="1"]
+
+transform = Transform( 0.02, 0, 0, 0, -8.74228e-10, -0.02, 0, 0.02, -8.74228e-10, 0.194263, 1.34468, 50.8621 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="rotation_helper" type="Spatial" parent="." index="2"]
+
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0.00256634, 1.5, -0.00402069 )
+script = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Camera" type="Camera" parent="rotation_helper" index="0"]
+
+transform = Transform( 1, -2.49126e-08, 4.3902e-08, 2.49127e-08, 0.999998, -2.11758e-21, -4.39023e-08, -8.47033e-21, 0.999998, -1.47344, 0.635031, 2.89529 )
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 0
+current = false
+fov = 70.0
+size = 1.0
+near = 0.05
+far = 700.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="shot_range" type="RayCast" parent="rotation_helper/Camera" index="0"]
+
+transform = Transform( -1, 0, 8.74227e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0 )
+enabled = true
+exclude_parent = true
+cast_to = Vector3( 0, 0, 100 )
+collision_mask = 524289
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="where_lookAt" type="Spatial" parent="rotation_helper/Camera" index="1"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.17912e-06, 0, -99.9968 )
+
+[node name="CamPos_Default" type="Spatial" parent="rotation_helper" index="1"]
+
+transform = Transform( 1, -2.49126e-08, 4.3902e-08, 2.49127e-08, 0.999998, -3.38813e-21, -4.39024e-08, -1.01644e-20, 0.999998, -1.47344, 0.635031, 2.89529 )
+
+[node name="CamPos_Zoom" type="Spatial" parent="rotation_helper" index="2"]
+
+transform = Transform( 1, -4.26326e-14, -1.84741e-13, -7.95861e-22, 0.999999, -2.96462e-21, 0, -8.47033e-22, 0.999999, -0.505389, 0.159977, 1.07045 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="cam_ray" type="RayCast" parent="rotation_helper" index="3"]
+
+transform = Transform( 1, -2.13163e-14, -8.52651e-14, -7.95861e-22, 0.999999, -2.11758e-21, 0, -4.23516e-22, 0.999999, 0, 0, 0 )
+enabled = true
+exclude_parent = true
+cast_to = Vector3( 0, 0, 0 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="aiming_position" type="Spatial" parent="." index="3"]
+
+transform = Transform( -1, 0, -8.74227e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.759432, 1.5, -1.00806 )
+
+

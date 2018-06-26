@@ -1,0 +1,126 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/Mutation/CollideCam/Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="PlaneMesh" id=1]
+
+size = Vector2( 2, 2 )
+subdivide_width = 0
+subdivide_depth = 0
+
+[sub_resource type="ConcavePolygonShape" id=2]
+
+data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
+
+[sub_resource type="CapsuleMesh" id=3]
+
+radius = 1.0
+mid_height = 1.0
+radial_segments = 64
+rings = 8
+
+[sub_resource type="CubeMesh" id=4]
+
+size = Vector3( 2, 2, 2 )
+subdivide_width = 0
+subdivide_height = 0
+subdivide_depth = 0
+
+[sub_resource type="ConcavePolygonShape" id=5]
+
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
+
+[node name="Demo" type="Spatial" index="0"]
+
+[node name="Ground" type="Spatial" parent="." index="0"]
+
+editor/display_folded = true
+
+[node name="MeshInstance" type="MeshInstance" parent="Ground" index="0"]
+
+transform = Transform( 3.03082, 0, 0, 0, 3.03082, 0, 0, 0, 3.03082, 1.06662, 0, -1.102 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 1 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody" type="StaticBody" parent="Ground/MeshInstance" index="0"]
+
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+friction = 1.0
+bounce = 0.0
+constant_linear_velocity = Vector3( 0, 0, 0 )
+constant_angular_velocity = Vector3( 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground/MeshInstance/StaticBody" index="0"]
+
+shape = SubResource( 2 )
+disabled = false
+
+[node name="Player" parent="." index="1" instance=ExtResource( 1 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125304, 0.364247, -0.0128255 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Player" index="4"]
+
+transform = Transform( 0.146045, 0, 0, 0, 0.00717306, -0.145869, 0, 0.145869, 0.00717306, 0, 0.603181, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 3 )
+skeleton = NodePath("..")
+material/0 = null
+
+[node name="Wall" type="Spatial" parent="." index="2"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall" index="0"]
+
+transform = Transform( -0.00180637, 0, 0.0364938, 0, 0.387537, 0, -1.3747, 0, -0.0146922, -0.95698, 0.514351, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 4 )
+skeleton = NodePath("..")
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Wall/MeshInstance" index="0"]
+
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+friction = 1.0
+bounce = 0.0
+constant_linear_velocity = Vector3( 0, 0, 0 )
+constant_angular_velocity = Vector3( 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall/MeshInstance/StaticBody" index="0"]
+
+shape = SubResource( 5 )
+disabled = false
+
+
